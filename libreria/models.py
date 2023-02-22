@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 # Django admin -> User: juanjo -> Password: 123
+# Django user -> User: user1 -> Password: useraccount2023+
 
 class libro(models.Model):
     id = models.AutoField(primary_key=True)
