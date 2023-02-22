@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block titulo %} Borrar {% endblock %}
+
+{% block contenido %}    
+    <div class="alert alert-danger" role="alert">
+        Libro eliminado
+    </div>
+    <a name="" id="" class="btn btn-success" href="{% url 'libros' %}" role="button">Regresar</a>    
+{% endblock %}

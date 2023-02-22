@@ -2,7 +2,20 @@
 
 {% block titulo %} Lista de libros {% endblock %}
 
+{% load static %}
+
+{% block javascript %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{% static 'core/js/confirmacion.js' %}"></script>    
+{% endblock %}
+
 {% block contenido %} 
+    {% if mensaje %}
+        <div class="alert alert-success" role="alert">
+            Libro eliminado exitosamente!
+        </div>
+    {% endif %}
+
     <div class="card"> <!-- bs5-card-head-foot -->
         <div class="card-header">
             <a name="" id="" class="btn btn-success" href="{% url 'crear' %}" role="button">Agregar nuevo libro</a>
@@ -21,16 +34,18 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for libro in Libros %}
                         <tr class="">
-                            <td scope="row">1</td>
-                            <td>Aprende Django</td>
-                            <td>Imagen.jpg</td>
-                            <td>Libro que explica todo sobre el framework Django</td>
+                            <td scope="row">{{ libro.id }}</td>
+                            <td>{{ libro.titulo }}</td>
+                            <td><img src="{% static libro.imagen %}" width="80" height="120"></td>
+                            <td>{{ libro.descripcion }}</td>
                             <td>
-                                <a name="" id="" class="btn btn-info" href="{% url 'editar' %}" role="button">Editar</a>
-                                <a name="" id="" class="btn btn-danger" href="#" role="button">Borrar</a>
+                                <a name="" id="" class="btn btn-info" href="{% url 'editar' libro.id %}" role="button">Editar</a>
+                                <a name="" id="" class="btn btn-danger" href="{% url 'borrar' libro.id %}" role="button">Borrar</a>
                             </td>
                         </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
